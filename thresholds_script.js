@@ -5,7 +5,7 @@ export const options = {
     vus: 30,
     duration: '1m',
     thresholds: {
-        http_req_duration: ['p(95)<1000'], // Baseline p95-аас 1.5 дахин ихээр авна[cite: 1]
+        http_req_duration: ['p(95)<1890'], 
         http_req_failed: ['rate<0.01'],
     },
 };

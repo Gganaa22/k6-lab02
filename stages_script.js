@@ -6,7 +6,7 @@ export const options = {
         { duration: '30s', target: 5 },   // Халаалт
         { duration: '1m',  target: 30 },  // Өсгөлт
         { duration: '30s', target: 100 }, // Оргил
-        { duration: '30s', target: 0 },   // Буулт[cite: 1]
+        { duration: '30s', target: 0 },   // Буулт
     ],
 };
 
