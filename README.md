@@ -42,9 +42,12 @@ Throughput: 40.46 req/s (2438 requests)
 
 Error Rate: 0.00% (✓ 'rate<0.01')
 
-FAIL демонстраци (results/run-fail.txt)
-Хатуу threshold (p(95)<500ms / олон хүсэлттэй нөхцөлд) тавихад тест FAIL болж, k6 нь exit status code = 1 буцаасан. CI/CD pipeline яг энэ exit code-оор автомат build-ийг зогсоодог.
+FAIL демонстраци (results/run-fail.txt, thresholds_fail_script.js)
+Босгыг p(95)<500ms болгож, бусад тохиргоог (30 VU, 1м) хэвээр үлдээсэн. Бодит p95 = 5.36s (p90 = 3.94s, max = 9.87s) тул `p(95)<500` босго зөрчигдөж (✗), `rate<0.01` биелсэн (✓, 0.00%). Энэ FAIL нь босгыг санаатайгаар хэт чанга болгосноос бус, тухайн ажиллуулалтад test.k6.io-ийн хариу огцом удаашрсанаас үүссэн (steady 30 VU-ийн PASS run-д p95 = 345.09ms байсан). Энэ нь гадаад серверийн хэлбэлзэл quality gate-д шууд нөлөөлдгийг харуулна.
 
+k6 нь threshold зөрчигдөхөд терминалд `ERRO[0062] thresholds on metrics 'http_req_duration' have been crossed` гэж хэвлэж, процессыг exit code 99-өөр дуусгадаг (CI pipeline-ийн build-ийг автоматаар зогсоодог механизм). ERRO мөр stderr-т гардаг тул PowerShell-ийн `| tee` файлд хуулдаггүй; терминалын гаралтыг screenshots/fail.png-д харуулсан.
+
+Дахин ажиллуулах: `k6 run thresholds_fail_script.js 2>&1 | tee results/run-fail.txt`
 
 ## 5. Дэлгэцийн зургууд
 
